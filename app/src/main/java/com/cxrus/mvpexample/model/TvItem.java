@@ -4,9 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Results {
-    @SerializedName("results")
-    List<Movie> movies;
+public class TvItem {
     @SerializedName("results")
     List<Tv> tv;
 
@@ -16,13 +14,5 @@ public class Results {
 
     public void setTv(List<Tv> tv) {
         this.tv = tv;
-    }
-
-    public List<Movie> getMovies() {
-        return movies;
-    }
-
-    public void setMovies(List<Movie> movies) {
-        this.movies = movies;
     }
 }

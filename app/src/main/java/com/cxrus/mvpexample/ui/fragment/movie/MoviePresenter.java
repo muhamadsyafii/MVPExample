@@ -2,7 +2,7 @@ package com.cxrus.mvpexample.ui.fragment.movie;
 
 import android.util.Log;
 
-import com.cxrus.mvpexample.model.Results;
+import com.cxrus.mvpexample.model.MovieItem;
 import com.cxrus.mvpexample.network.ApiService;
 import com.cxrus.mvpexample.network.RetrofitInstance;
 
@@ -20,9 +20,9 @@ public class MoviePresenter implements MovieContract.Presenter{
     @Override
     public void getMovie() {
         ApiService service = RetrofitInstance.getRetrofitInstance().create(ApiService.class);
-        service.getNowPlayingMovie().enqueue(new Callback<Results>() {
+        service.getNowPlayingMovie().enqueue(new Callback<MovieItem>() {
             @Override
-            public void onResponse(Call<Results> call, Response<Results> response) {
+            public void onResponse(Call<MovieItem> call, Response<MovieItem> response) {
                 Log.e("onRespone", "respone :" + response.body());
                 mView.showLoading();
                 if (response.isSuccessful() && response.body() !=null){
@@ -32,7 +32,7 @@ public class MoviePresenter implements MovieContract.Presenter{
             }
 
             @Override
-            public void onFailure(Call<Results> call, Throwable t) {
+            public void onFailure(Call<MovieItem> call, Throwable t) {
                 mView.hideLoading();
                 Log.d("Movie Presenter", "Failure", t);
             }

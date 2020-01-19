@@ -54,12 +54,13 @@ public class TvFragment extends Fragment implements TvContract.View{
 
     @Override
     public void initView() {
+        tvAdapter = new TvAdapter(getContext());
         RecyclerView.LayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         tvRecycleView.setLayoutManager(manager);
     }
 
     @Override
-    public void showImage(List<Tv> tvList) {
+    public void showTv (List<Tv> tvList) {
         tvRecycleView.setAdapter(tvAdapter);
         tvAdapter.setTvAdapter(tvList);
     }

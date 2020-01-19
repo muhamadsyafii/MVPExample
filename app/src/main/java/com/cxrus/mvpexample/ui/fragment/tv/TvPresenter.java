@@ -2,7 +2,7 @@ package com.cxrus.mvpexample.ui.fragment.tv;
 
 import android.util.Log;
 
-import com.cxrus.mvpexample.model.Results;
+import com.cxrus.mvpexample.model.TvItem;
 import com.cxrus.mvpexample.network.ApiService;
 import com.cxrus.mvpexample.network.RetrofitInstance;
 
@@ -21,19 +21,20 @@ public class TvPresenter implements TvContract.Presenter{
     @Override
     public void getTv() {
         ApiService service = RetrofitInstance.getRetrofitInstance().create(ApiService.class);
-        service.getTvAiringToday().enqueue(new Callback<Results>() {
+        service.getTvAiringToday().enqueue(new Callback<TvItem>() {
             @Override
-            public void onResponse(Call<Results> call, Response<Results> response) {
+            public void onResponse(Call<TvItem> call, Response<TvItem> response) {
                 Log.d("onResponeTv","Respone"+ response.body());
                 mView.showLoading();
                 if (response.isSuccessful() && response.body() !=null){
-                    mView.showImage(response.body().getTv());
+                    mView.showTv(response.body().getTv());
+                    mView.hideLoading();
                 }
             }
 
             @Override
-            public void onFailure(Call<Results> call, Throwable t) {
-                mView.hideLoading();
+            public void onFailure(Call<TvItem> call, Throwable t) {
+                Log.d("onFailureTv","Failure"+ t);
             }
         });
 

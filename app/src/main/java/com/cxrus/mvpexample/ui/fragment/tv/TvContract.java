@@ -7,7 +7,7 @@ import java.util.List;
 public interface TvContract {
     interface View {
         void initView();
-        void showImage(List<Tv> tvList);
+        void showTv(List<Tv> tvList);
         void showLoading();
         void hideLoading();
     }

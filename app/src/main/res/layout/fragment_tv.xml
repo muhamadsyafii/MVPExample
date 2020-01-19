@@ -8,7 +8,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_tv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_tv"
+        tools:itemCount="2"/>
     <ProgressBar
         android:id="@+id/mProgressBarTv"
         android:layout_width="match_parent"
