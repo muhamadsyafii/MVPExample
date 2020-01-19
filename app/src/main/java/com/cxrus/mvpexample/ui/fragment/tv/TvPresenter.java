@@ -27,7 +27,7 @@ public class TvPresenter implements TvContract.Presenter{
                 Log.d("onResponeTv","Respone"+ response.body());
                 mView.showLoading();
                 if (response.isSuccessful() && response.body() !=null){
-//                    mView.showImage(response.body().getTv());
+                    mView.showImage(response.body().getTv());
                 }
             }
 

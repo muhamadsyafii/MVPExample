@@ -46,6 +46,7 @@ public class TvFragment extends Fragment implements TvContract.View{
         View view = inflater.inflate(R.layout.fragment_tv, container, false);
         ButterKnife.bind(this, view);
         mPresenter = new TvPresenter(this);
+        mPresenter.getTv();
         mPresenter.start();
         return view;
     }

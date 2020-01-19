@@ -43,8 +43,8 @@ public class MovieFragment extends Fragment implements MovieContract.View{
         View view = inflater.inflate(R.layout.fragment_movie, container, false);
         ButterKnife.bind(this, view);
         presenter = new MoviePresenter(this);
-        presenter.Start();
         presenter.getMovie();
+        presenter.Start();
         return view;
     }
 
