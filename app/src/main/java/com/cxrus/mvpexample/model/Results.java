@@ -7,6 +7,16 @@ import java.util.List;
 public class Results {
     @SerializedName("results")
     List<Movie> movies;
+    @SerializedName("results")
+    List<Tv> tv;
+
+    public List<Tv> getTv() {
+        return tv;
+    }
+
+    public void setTv(List<Tv> tv) {
+        this.tv = tv;
+    }
 
     public List<Movie> getMovies() {
         return movies;

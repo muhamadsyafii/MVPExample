@@ -10,4 +10,7 @@ public interface ApiService {
 
     @GET("movie/now_playing" + Constants.API_KEY)
     Call<Results> getNowPlayingMovie();
+
+    @GET("tv/airing_today"+Constants.API_KEY)
+    Call<Results> getTvAiringToday();
 }

@@ -1,4 +1,4 @@
-package com.cxrus.mvpexample.ui;
+package com.cxrus.mvpexample.ui.fragment.movie;
 
 import android.util.Log;
 
@@ -10,12 +10,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MoviePresenter implements MovieContract.Presenter {
+public class MoviePresenter implements MovieContract.Presenter{
     MovieContract.View mView;
 
-
-    public MoviePresenter(MovieContract.View mview) {
-        this.mView = mview;
+    public MoviePresenter(MovieContract.View mView) {
+        this.mView = mView;
     }
 
     @Override
@@ -26,18 +25,16 @@ public class MoviePresenter implements MovieContract.Presenter {
             public void onResponse(Call<Results> call, Response<Results> response) {
                 Log.e("onRespone", "respone :" + response.body());
                 mView.showLoading();
-                if (response.isSuccessful() && response.body() != null) {
+                if (response.isSuccessful() && response.body() !=null){
                     mView.showImage(response.body().getMovies());
                     mView.hideLoading();
                 }
-
             }
 
             @Override
             public void onFailure(Call<Results> call, Throwable t) {
                 mView.hideLoading();
-                Log.e("Movie Presenter", "Error : " + t.getLocalizedMessage());
-
+                Log.d("Movie Presenter", "Failure", t);
             }
         });
     }

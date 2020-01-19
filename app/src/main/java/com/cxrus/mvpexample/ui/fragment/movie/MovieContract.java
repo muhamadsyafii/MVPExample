@@ -1,4 +1,4 @@
-package com.cxrus.mvpexample.ui;
+package com.cxrus.mvpexample.ui.fragment.movie;
 
 import com.cxrus.mvpexample.model.Movie;
 
