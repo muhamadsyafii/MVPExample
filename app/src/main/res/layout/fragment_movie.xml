@@ -9,7 +9,6 @@
         android:id="@+id/rv_movie"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"
         tools:itemCount="2"
         tools:listitem="@layout/item_movie"/>
     <ProgressBar

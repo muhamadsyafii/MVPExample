@@ -29,6 +29,8 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         initView();
     }
 
+
+
     private void initView() {
         mBottomNavigationView = findViewById(R.id.mBottomNavigationView);
         mBottomNavigationView.setOnNavigationItemSelectedListener(this);
@@ -69,4 +71,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
             }
         }, 2000);
     }
+
+
+
 }

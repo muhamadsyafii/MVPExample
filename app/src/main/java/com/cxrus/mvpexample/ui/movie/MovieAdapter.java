@@ -17,6 +17,9 @@ import com.cxrus.mvpexample.model.Movie;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
     private Context context;
     private List<Movie> movieList;
@@ -32,7 +35,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_movie, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -40,6 +43,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Movie movie = movieList.get(position);
         holder.tv_title.setText(movie.getTitle());
+        holder.tv_overview.setText(movie.getOverview());
+        holder.tv_release_date.setText(movie.getRelease_date());
         Glide.with(context)
                 .load("https://image.tmdb.org/t/p/w500" + movie.getPoster_path())
                 .into(holder.iv_poster);
@@ -55,13 +60,18 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.iv_poster)
         ImageView iv_poster;
+        @BindView(R.id.tv_title)
         TextView tv_title;
+        @BindView(R.id.tv_overview)
+        TextView tv_overview;
+        @BindView(R.id.tv_release_date)
+        TextView tv_release_date;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tv_title = itemView.findViewById(R.id.tv_title);
-            iv_poster = itemView.findViewById(R.id.iv_poster);
+            ButterKnife.bind(this, itemView);
         }
     }
 }
