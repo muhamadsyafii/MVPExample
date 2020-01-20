@@ -1,4 +1,4 @@
-package com.cxrus.mvpexample.ui.activity;
+package com.cxrus.mvpexample.ui.home;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,8 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.cxrus.mvpexample.R;
-import com.cxrus.mvpexample.ui.fragment.movie.MovieFragment;
-import com.cxrus.mvpexample.ui.fragment.tv.TvFragment;
+import com.cxrus.mvpexample.ui.movie.MovieFragment;
+import com.cxrus.mvpexample.ui.tv.TvFragment;
 import com.cxrus.mvpexample.util.ActivityUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

@@ -1,7 +1,6 @@
-package com.cxrus.mvpexample.ui.fragment.tv;
+package com.cxrus.mvpexample.ui.tv;
 
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

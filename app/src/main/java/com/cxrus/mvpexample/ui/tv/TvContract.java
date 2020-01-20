@@ -1,4 +1,4 @@
-package com.cxrus.mvpexample.ui.fragment.tv;
+package com.cxrus.mvpexample.ui.tv;
 
 import com.cxrus.mvpexample.model.Tv;
 

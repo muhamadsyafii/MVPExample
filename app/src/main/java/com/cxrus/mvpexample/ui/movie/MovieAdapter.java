@@ -1,4 +1,4 @@
-package com.cxrus.mvpexample.ui.fragment.movie;
+package com.cxrus.mvpexample.ui.movie;
 
 import android.content.Context;
 import android.util.Log;
