@@ -3,26 +3,37 @@ package com.cxrus.mvpexample.db;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-public class SharedPreference {
-    private String PREF_NAME = "UserPref";
-    private SharedPreferences preferences;
-    private SharedPreferences.Editor editor;
+import com.cxrus.mvpexample.util.Constants;
 
-    private String SAVE_TOKEN = "SaveToken";
+public class SharedPreference {
+    private static final String PREF_NAME = "UserPref";
+    private static SharedPreferences preferences;
+    SharedPreferences.Editor editor;
 
     public SharedPreference(Context context) {
         preferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         editor = preferences.edit();
     }
 
-    public void save(String KEY_NAME, String token) {
+    public void save(String token) {
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(KEY_NAME, token);
-        editor.commit();
+        editor.putString(Constants.KEY_REQUEST_TOKEN, token);
+        editor.apply();
     }
 
-    public String getValueString(String KEY_NAME) {
-        return preferences.getString(KEY_NAME, null);
+    public void saveSession(String token) {
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(Constants.KEY_SESSION_ID, token);
+        editor.putBoolean(Constants.KEY_LOGIN, true);
+        editor.apply();
+    }
+
+    public static String getRequestToken() {
+        return preferences.getString(Constants.KEY_REQUEST_TOKEN, null);
+    }
+
+    public static boolean isLogin() {
+        return preferences.getBoolean(Constants.KEY_LOGIN, false);
     }
 
     public void clearSharedPreference() {

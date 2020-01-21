@@ -2,16 +2,12 @@ package com.cxrus.mvpexample.ui.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.cxrus.mvpexample.db.SharedPreference;
 import com.cxrus.mvpexample.R;
@@ -24,6 +20,7 @@ import com.cxrus.mvpexample.util.ActivityUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import es.dmoral.toasty.Toasty;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
 
@@ -35,8 +32,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     TextView warningUsername;
     @BindView(R.id.tv_warningPassword)
     TextView warningPassword;
-    @BindView(R.id.mProgressBarLogin)
-    ProgressBar mProgressBar;
     @BindView(R.id.btn_Login)
     Button btnLogin;
 
@@ -54,23 +49,30 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         ButterKnife.bind(this);
         mPresenter = new LoginPresenter(this);
         mPresenter.getReqToken();
-        mProgressBar.setVisibility(View.GONE);
+        mPresenter.start();
 
+
+    }
+
+    @Override
+    public void initView() {
+        hideWarningPassword();
+        hideWarningUsername();
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String username = mUsername.getText().toString();
                 String password = mPassword.getText().toString();
-                String tokens = sharedPreference.getValueString("REQ_TOKEN");
-
-                if (username.isEmpty() && password.isEmpty()) {
-                    warningUsername.setVisibility(View.VISIBLE);
-                    warningPassword.setVisibility(View.VISIBLE);
+                String tokens = SharedPreference.getRequestToken();
+                if (username.isEmpty() && mPassword.getText().toString().length() < 6) {
+                    showWarningUsername();
+                    showWarningPassword();
                 } else {
+                    hideWarningUsername();
+                    hideWarningPassword();
                     login = new Login(username, password, tokens);
                     mPresenter.getToken(login);
                     mPresenter.getSessionId(requestToken);
-
                     Log.d("LoginActivity", "onClick...");
                 }
 
@@ -79,27 +81,37 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     }
 
     @Override
-    public void showLoading() {
-        mProgressBar.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void hideLoading() {
-        mProgressBar.setVisibility(View.GONE);
-    }
-
-    @Override
     public void loginFailed() {
-        Toast.makeText(this, "Something is wrong....", Toast.LENGTH_SHORT).show();
+        Toasty.error(this, "Something is wrong....", Toasty.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showWarningUsername() {
+        warningUsername.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showWarningPassword() {
+        warningPassword.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideWarningUsername() {
+        warningUsername.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void hideWarningPassword() {
+        warningPassword.setVisibility(View.GONE);
     }
 
     @Override
     public void showReqToken(Token token) {
         String reqToken = token.getRequestToken();
         requestToken = new RequestToken(reqToken);
-        sharedPreference.save("REQ_TOKEN", reqToken);
-
+        sharedPreference.save(reqToken);
         Log.d("LoginActivity", "showReqToken : " + token.getRequestToken());
+
     }
 
     @Override
@@ -110,15 +122,13 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     public void showSessionId(Session session) {
         sessionId = session.getSessionId();
-        sharedPreference.save("SESSION", sessionId);
+        sharedPreference.saveSession( sessionId);
 
         if (session.isSuccess()) {
+            Toasty.success(this, "Login Success" + session.isSuccess(), Toasty.LENGTH_SHORT).show();
             ActivityUtils.openActivity(this, HomeActivity.class);
             finish();
-        } else {
-            loginFailed();
         }
-
         Log.d("LoginActivity", "showSessionId : " + sessionId);
     }
 

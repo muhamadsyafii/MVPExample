@@ -9,5 +9,9 @@
         android:id="@+id/nav_tv"
         android:title="@string/Tv"
         android:icon="@drawable/ic_tv"/>
+    <item
+        android:id="@+id/nav_account"
+        android:title="@string/account"
+        android:icon="@drawable/ic_account"/>
 
 </menu>

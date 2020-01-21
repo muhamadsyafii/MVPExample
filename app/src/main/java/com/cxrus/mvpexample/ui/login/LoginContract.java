@@ -7,9 +7,12 @@ import com.cxrus.mvpexample.model.Token;
 
 public interface LoginContract {
     interface View{
-        void showLoading();
-        void hideLoading();
+        void initView();
         void loginFailed();
+        void showWarningUsername();
+        void showWarningPassword();
+        void hideWarningUsername();
+        void hideWarningPassword();
         void showReqToken(Token token);
         void showToken(Token token);
         void showSessionId(Session session);
@@ -18,5 +21,6 @@ public interface LoginContract {
         void getReqToken();
         void getToken(Login login);
         void getSessionId(RequestToken requestToken);
+        void start();
     }
 }

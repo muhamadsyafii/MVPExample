@@ -2,8 +2,9 @@
     <string name="app_name">MvpExample</string>
 
     <!--Navigation Menu-->
-    <string name="movie_now_playing">Movie Now playing</string>
+    <string name="movie_now_playing">Movie</string>
     <string name="Tv">TV Show</string>
+    <string name="account">Account</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
