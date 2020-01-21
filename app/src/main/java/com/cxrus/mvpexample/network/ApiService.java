@@ -1,5 +1,6 @@
 package com.cxrus.mvpexample.network;
 
+import com.cxrus.mvpexample.model.Account;
 import com.cxrus.mvpexample.model.Login;
 import com.cxrus.mvpexample.model.RequestToken;
 import com.cxrus.mvpexample.model.Session;
@@ -29,4 +30,7 @@ public interface ApiService {
 
     @POST("authentication/session/new"+ Constants.API_KEY)
     Call<Session> getSession(@Body RequestToken requestToken);
+
+    @GET("account" + Constants.API_KEY)
+    Call<Session> getAccount(@Body Session session);
 }
