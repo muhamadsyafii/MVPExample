@@ -28,8 +28,9 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
         sharedPreference = new SharedPreference(this);
 
-        if (SharedPreference.isLogin()) {
+        if (!sharedPreference.isLogin()) {
             ActivityUtils.openActivity(this, LoginActivity.class);
+            finish();
         } else {
             new Timer().schedule(new TimerTask() {
                 @Override

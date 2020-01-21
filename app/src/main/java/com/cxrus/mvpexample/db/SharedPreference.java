@@ -38,6 +38,8 @@ public class SharedPreference {
 
     public void clearSharedPreference() {
         SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(Constants.KEY_SESSION_ID, "");
+        editor.putBoolean(Constants.KEY_LOGIN,false);
         editor.clear();
         editor.commit();
     }

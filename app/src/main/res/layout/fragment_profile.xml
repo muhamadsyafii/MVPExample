@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="12dp"
     tools:context=".ui.profile.ProfileFragment">
 
     <TextView
@@ -11,5 +12,12 @@
         android:text="Hallo Bosqqq"
         android:layout_centerInParent="true"
         android:gravity="center"/>
+    <Button
+        android:id="@+id/btn_Logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="exit and clear"/>
+
 
 </RelativeLayout>
