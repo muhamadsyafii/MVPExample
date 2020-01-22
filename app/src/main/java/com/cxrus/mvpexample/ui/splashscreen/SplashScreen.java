@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.cxrus.mvpexample.R;
 import com.cxrus.mvpexample.db.SharedPreference;
 import com.cxrus.mvpexample.ui.home.HomeActivity;
@@ -18,8 +19,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class SplashScreen extends AppCompatActivity {
+
     private SharedPreference sharedPreference;
 
     @Override
@@ -28,14 +31,19 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
         sharedPreference = new SharedPreference(this);
 
-        if (!sharedPreference.isLogin()) {
-            ActivityUtils.openActivity(this, LoginActivity.class);
-            finish();
-        } else {
+        if (sharedPreference.isLogin()) {
             new Timer().schedule(new TimerTask() {
                 @Override
                 public void run() {
                     ActivityUtils.openActivity(SplashScreen.this, HomeActivity.class);
+                    finish();
+                }
+            }, 3000);
+        } else {
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    ActivityUtils.openActivity(SplashScreen.this, LoginActivity.class);
                     finish();
                 }
             }, 3000);

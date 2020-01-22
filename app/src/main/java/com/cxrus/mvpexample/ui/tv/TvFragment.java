@@ -12,7 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.cxrus.mvpexample.R;
+import com.cxrus.mvpexample.model.Results;
 import com.cxrus.mvpexample.model.Tv;
 
 import java.util.List;
@@ -30,8 +32,8 @@ public class TvFragment extends Fragment implements TvContract.View{
 
     @BindView(R.id.rv_tv)
     RecyclerView tvRecycleView;
-    @BindView(R.id.mProgressBarTv)
-    ProgressBar mProgressBar;
+    @BindView(R.id.lottie_loading_tv)
+    LottieAnimationView animationView;
 
 
     public TvFragment() {
@@ -60,18 +62,18 @@ public class TvFragment extends Fragment implements TvContract.View{
     }
 
     @Override
-    public void showTv (List<Tv> tvList) {
+    public void showTv (List<Results> tvList) {
         tvRecycleView.setAdapter(tvAdapter);
         tvAdapter.setTvAdapter(tvList);
     }
 
     @Override
     public void showLoading() {
-        mProgressBar.setVisibility(View.VISIBLE);
+        animationView.playAnimation();
     }
 
     @Override
     public void hideLoading() {
-        mProgressBar.setVisibility(View.GONE);
+        animationView.setVisibility(View.GONE);
     }
 }

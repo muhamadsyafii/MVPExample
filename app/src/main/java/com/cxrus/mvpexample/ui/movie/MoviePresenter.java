@@ -26,7 +26,7 @@ public class MoviePresenter implements MovieContract.Presenter{
                 Log.e("onRespone", "respone :" + response.body());
                 mView.showLoading();
                 if (response.isSuccessful() && response.body() !=null){
-                    mView.showImage(response.body().getMovies());
+                    mView.showImage(response.body().getResults());
                     mView.hideLoading();
                 }
             }
@@ -34,7 +34,7 @@ public class MoviePresenter implements MovieContract.Presenter{
             @Override
             public void onFailure(Call<MovieItem> call, Throwable t) {
                 mView.hideLoading();
-                Log.d("Movie Presenter", "Failure", t);
+                Log.d("Results Presenter", "Failure", t);
             }
         });
     }

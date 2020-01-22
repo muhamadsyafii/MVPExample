@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.cxrus.mvpexample.R;
-import com.cxrus.mvpexample.model.Movie;
+import com.cxrus.mvpexample.model.Results;
 
 import java.util.List;
 
@@ -22,13 +22,13 @@ import butterknife.ButterKnife;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
     private Context context;
-    private List<Movie> movieList;
+    private List<Results> movieList;
 
 
     public MovieAdapter(Context context) {
         this.context = context;
     }
-    public void setMovieAdapter(List<Movie> movieList){
+    public void setMovieAdapter(List<Results> movieList){
         this.movieList = movieList;
         notifyDataSetChanged();
     }
@@ -41,12 +41,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Movie movie = movieList.get(position);
+        Results movie = movieList.get(position);
         holder.tv_title.setText(movie.getTitle());
         holder.tv_overview.setText(movie.getOverview());
-        holder.tv_release_date.setText(movie.getRelease_date());
+//        holder.tv_release_date.setText(movie.getRelease_date());
         Glide.with(context)
-                .load("https://image.tmdb.org/t/p/w500" + movie.getPoster_path())
+                .load("https://image.tmdb.org/t/p/w500" + movie.getPosterPath())
                 .into(holder.iv_poster);
 
         Log.e("Adapter", "Data nya :" + movie.getTitle());

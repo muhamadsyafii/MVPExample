@@ -6,13 +6,13 @@ import java.util.List;
 
 public class MovieItem {
     @SerializedName("results")
-    List<Movie> movies;
+    List<Results> results;
 
-    public List<Movie> getMovies() {
-        return movies;
+    public List<Results> getResults() {
+        return results;
     }
 
-    public void setMovies(List<Movie> movies) {
-        this.movies = movies;
+    public void setResults(List<Results> results) {
+        this.results = results;
     }
 }

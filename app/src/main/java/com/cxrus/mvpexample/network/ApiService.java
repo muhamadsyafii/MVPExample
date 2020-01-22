@@ -3,6 +3,7 @@ package com.cxrus.mvpexample.network;
 import com.cxrus.mvpexample.model.Account;
 import com.cxrus.mvpexample.model.Login;
 import com.cxrus.mvpexample.model.RequestToken;
+import com.cxrus.mvpexample.model.Results;
 import com.cxrus.mvpexample.model.Session;
 import com.cxrus.mvpexample.model.Token;
 import com.cxrus.mvpexample.model.MovieItem;
@@ -20,7 +21,7 @@ public interface ApiService {
     Call<MovieItem> getNowPlayingMovie();
 
     @GET("tv/airing_today" + Constants.API_KEY)
-    Call<TvItem> getTvAiringToday();
+    Call<MovieItem> getTvAiringToday();
 
     @GET("authentication/token/new" + Constants.API_KEY)
     Call<Token> getReqToken();

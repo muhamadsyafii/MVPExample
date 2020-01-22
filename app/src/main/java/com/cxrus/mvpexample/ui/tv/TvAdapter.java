@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.cxrus.mvpexample.R;
+import com.cxrus.mvpexample.model.Results;
 import com.cxrus.mvpexample.model.Tv;
 
 import java.util.List;
@@ -22,13 +23,13 @@ import butterknife.ButterKnife;
 
 public class TvAdapter extends RecyclerView.Adapter<TvAdapter.ViewHolder> {
     private Context context;
-    private List<Tv> tvList;
+    private List<Results> tvList;
 
     public TvAdapter(Context context) {
         this.context = context;
     }
 
-    public void setTvAdapter(List<Tv> tvList) {
+    public void setTvAdapter(List<Results> tvList) {
         this.tvList = tvList;
         notifyDataSetChanged();
     }
@@ -42,12 +43,12 @@ public class TvAdapter extends RecyclerView.Adapter<TvAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Tv tv = tvList.get(position);
-        holder.tv_title_tv.setText(tv.getOriginal_name());
+        Results tv = tvList.get(position);
+        holder.tv_title_tv.setText(tv.getOriginalTitle());
         holder.tv_overview.setText(tv.getOverview());
-        holder.tv_release_date.setText(tv.getFirst_air_date());
+        holder.tv_release_date.setText(tv.getReleaseDate());
         Glide.with(context)
-                .load("https://image.tmdb.org/t/p/w500" + tv.getBackdrop_path())
+                .load("https://image.tmdb.org/t/p/w500" + tv.getBackdropPath())
                 .into(holder.iv_poster_tv);
     }
 

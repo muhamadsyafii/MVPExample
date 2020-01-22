@@ -125,7 +125,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         sharedPreference.saveSession( sessionId);
 
         if (session.isSuccess()) {
-            Toasty.success(this, "Login Success" + session.isSuccess(), Toasty.LENGTH_SHORT).show();
+            Toasty.success(this, "Login Success + ", Toasty.LENGTH_SHORT).show();
             ActivityUtils.openActivity(this, HomeActivity.class);
             finish();
         }

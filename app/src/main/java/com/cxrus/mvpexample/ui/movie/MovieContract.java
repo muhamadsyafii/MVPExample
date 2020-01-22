@@ -1,6 +1,6 @@
 package com.cxrus.mvpexample.ui.movie;
 
-import com.cxrus.mvpexample.model.Movie;
+import com.cxrus.mvpexample.model.Results;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public interface MovieContract {
      */
     interface View {
         void initView();
-        void showImage(List<Movie> movieList);
+        void showImage(List<Results> movieList);
         void showLoading();
         void hideLoading();
     }

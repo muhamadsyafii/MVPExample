@@ -5,14 +5,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.cxrus.mvpexample.R;
-import com.cxrus.mvpexample.model.Movie;
+import com.cxrus.mvpexample.model.Results;
 
 import java.util.List;
 
@@ -30,8 +30,10 @@ public class MovieFragment extends Fragment implements MovieContract.View{
 
     @BindView(R.id.rv_movie)
     RecyclerView movieRecycleView;
-    @BindView(R.id.mProgressBarMovie)
-    ProgressBar mProgressBar;
+//    @BindView(R.id.mProgressBarMovie)
+//    ProgressBar mProgressBar;
+    @BindView(R.id.lottie_loading)
+    LottieAnimationView animationView;
 
     public MovieFragment() {
         // Required empty public constructor
@@ -56,18 +58,20 @@ public class MovieFragment extends Fragment implements MovieContract.View{
     }
 
     @Override
-    public void showImage(List<Movie> movieList) {
+    public void showImage(List<Results> movieList) {
         movieAdapter.setMovieAdapter(movieList);
         movieRecycleView.setAdapter(movieAdapter);
     }
 
     @Override
     public void showLoading() {
-        mProgressBar.setVisibility(View.VISIBLE);
+//        mProgressBar.setVisibility(View.VISIBLE);
+        animationView.playAnimation();
     }
 
     @Override
     public void hideLoading() {
-        mProgressBar.setVisibility(View.GONE);
+//        mProgressBar.setVisibility(View.GONE);
+        animationView.setVisibility(View.GONE);
     }
 }
