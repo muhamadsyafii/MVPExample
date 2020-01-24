@@ -3,22 +3,15 @@ package com.cxrus.mvpexample.ui.home;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import com.cxrus.mvpexample.R;
 import com.cxrus.mvpexample.db.SharedPreference;
-import com.cxrus.mvpexample.ui.movie.MovieFragment;
 import com.cxrus.mvpexample.ui.profile.ProfileActivity;
-import com.cxrus.mvpexample.ui.tv.TvFragment;
+import com.cxrus.mvpexample.util.ActivityUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import butterknife.BindView;
@@ -33,29 +26,15 @@ public class HomeActivity extends AppCompatActivity {
     @BindView(R.id.btnAccount)
     ImageView btnAccount;
 
-    final Fragment fragment1 = new MovieFragment();
-    final Fragment fragment2 = new TvFragment();
-//    final Fragment fragment3 = new ProfileFragment();
-    final FragmentManager fm = getSupportFragmentManager();
-    Fragment active = fragment1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         sharedPreference = new SharedPreference(this);
         ButterKnife.bind(this);
+        ActivityUtils.replaceFragmentActivity(getSupportFragmentManager(), new HomeFragment(), R.id.fl_home);
 
-//        if (savedInstanceState == null) {
-//            ActivityUtils.replaceFragmentActivity(getSupportFragmentManager(), new MovieFragment(), R.id.fl_home);
-//        }
         onClick();
-        mBottomNavigationView = findViewById(R.id.mBottomNavigationView);
-        mBottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-//        fm.beginTransaction().add(R.id.fl_home, fragment3, "3").hide(fragment3).commit();
-        fm.beginTransaction().add(R.id.fl_home, fragment2, "2").hide(fragment2).commit();
-        fm.beginTransaction().add(R.id.fl_home, fragment1, "1").commit();
     }
 
 
@@ -72,27 +51,27 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener =
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                    selectActiveTabs(menuItem.getItemId());
-                    return true;
-                }
-            };
+//    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener =
+//            new BottomNavigationView.OnNavigationItemSelectedListener() {
+//                @Override
+//                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+//                    selectActiveTabs(menuItem.getItemId());
+//                    return true;
+//                }
+//            };
 
-    private void selectActiveTabs(int menuItem) {
-        switch (menuItem) {
-            case R.id.nav_movie:
+//    private void selectActiveTabs(int menuItem) {
+//        switch (menuItem) {
+//            case R.id.nav_movie:
 //                ActivityUtils.replaceFragmentActivity(getSupportFragmentManager(), new MovieFragment(), R.id.fl_home);
-                fm.beginTransaction().hide(active).show(fragment1).commit();
-                active = fragment1;
-                return;
-            case R.id.nav_tv:
+//                fm.beginTransaction().hide(active).show(fragment1).commit();
+//                active = fragment1;
+//                return;
+//            case R.id.nav_tv:
 //                ActivityUtils.replaceFragmentActivity(getSupportFragmentManager(), new TvFragment(), R.id.fl_home);
-                fm.beginTransaction().hide(active).show(fragment2).commit();
-                active = fragment2;
-                break;
+//                fm.beginTransaction().hide(active).show(fragment2).commit();
+//                active = fragment2;
+//                break;
 //            case R.id.nav_account:
 //                if (SharedPreference.isLogin()) {
 //                    ActivityUtils.openActivity(this, LoginActivity.class);
@@ -102,16 +81,16 @@ public class HomeActivity extends AppCompatActivity {
 //                fm.beginTransaction().hide(active).show(fragment3).commit();
 //                active = fragment3;
 //                break;
-            default:
-
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.bottom_navigation_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
+//            default:
+//
+//        }
+//    }
+//
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.bottom_navigation_menu, menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
 
     @Override
     public void onBackPressed() {

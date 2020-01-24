@@ -12,5 +12,11 @@
     <string name="Warning_password">*Please enter your password</string>
     <string name="name_me">Muhamad Syafii</string>
 
+    //Name RecycleView
+    <string name="now_playing">Now Playing</string>
+    <string name="popular">Popular</string>
+    <string name="top_rated">Top Ranted</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="see_all">See All</string>
 
 </resources>
